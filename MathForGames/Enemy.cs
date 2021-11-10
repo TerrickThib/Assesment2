@@ -56,7 +56,7 @@ namespace MathForGames
             //Takes players position and eneme position to get differance
             distance = _player.LocalPosition - LocalPosition;
             distance.Normalize();
-            Velocity = distance * Speed * deltaTime;
+            Velocity = distance.Normalized * Speed * deltaTime;
 
             if(GetTargetInSight()&& GetTargetIndistance())
                 LocalPosition += Velocity;

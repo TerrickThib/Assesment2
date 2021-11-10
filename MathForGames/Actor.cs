@@ -222,7 +222,7 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {            
             Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
-            this.Rotate(0.05f);
+            //this.Rotate(0.05f);
             UpdateTransforms();
         }
 

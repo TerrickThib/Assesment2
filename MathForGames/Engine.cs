@@ -13,7 +13,7 @@ namespace MathForGames
         private static bool _applicationShouldClose = false;
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
-        private Stopwatch _stopwatch = new Stopwatch();
+        private Stopwatch _stopwatch = new Stopwatch();      
 
         /// <summary>
         /// Called to Begin the application
@@ -50,6 +50,7 @@ namespace MathForGames
             End();
         }
 
+        
         /// <summary>
         /// Called when the application starts
         /// </summary>
@@ -57,17 +58,17 @@ namespace MathForGames
         {
             //creates stop watch and starts count
             _stopwatch.Start();
-
+                      
             //Create a window using raylib
-            Raylib.InitWindow(800, 450, "Math For Games");          
+            Raylib.InitWindow(800, 1000, "Math For Games");          
             Raylib.SetTargetFPS(60);
 
             Scene scene = new Scene();
 
             //Sets what player is and size          
-            Player player = new Player(5, 10, 150, scene, "Player", "Images/player.png");
+            Player player = new Player(400, 980, 150, scene, "Player", "Images/player.png");
             player.SetScale(50, 50);
-            //player.SetTranslation(300, 300);
+            //player.SetTranslation(300, 300);            
 
             //Sets the hit box for player if they have a circle hit box or squar hit box
             CircleCollider playerCircleCollider = new CircleCollider(50, player);
@@ -76,7 +77,7 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
 
             //Sets enemy and enemys size
-            Enemy enemy = new Enemy(100, 5, 1, 250, 1,player, "Eneme", "Images/enemy.png");
+            Enemy enemy = new Enemy(400, 23, 100, 1000, 180,player, "Eneme", "Images/enemy.png");
             enemy.SetScale(50, 50);
             enemy.LookAt(new Vector2(700, 900));
 
@@ -94,17 +95,9 @@ namespace MathForGames
             child.SetScale(1, 1);
             child.SetTranslation(1, 1);
             player.AddChild(child);
-
-            Actor child2 = new Actor(-5, -20, "Child2", "Images/enemy.png");
-            child2.SetScale(0.5f, 0.5f);
-            child2.SetTranslation(1, 1);
-            child.AddChild(child2);
-
-            scene.AddActor(child2);
-            scene.AddActor(player);
-            scene.AddActor(child);
-            //scene.AddActor(actor);                                    
-            //scene.AddActor(enemy);
+            
+            scene.AddActor(player);                                                          
+            scene.AddActor(enemy);
             //scene.AddActor(text);
 
             _currentSceneIndex = AddScene(scene);
@@ -135,11 +128,11 @@ namespace MathForGames
         {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Color.BLACK);
-
+            
             //Adds all actor icons to buffer
             _scenes[_currentSceneIndex].Draw();
             // _scenes[_currentSceneIndex].DrawUI();
-
+            
             Raylib.EndDrawing();
         }
 

@@ -87,9 +87,19 @@ namespace MathForGames
             //Uses velocity with current Position
             LocalPosition += Velocity;
 
-            base.Update(deltaTime);
-        }
+            //Clamps your position between two points and then sets your LOcal position to be resultX and resultY
+            float resultX = Math.Clamp(LocalPosition.X, 23, 780);
+            float resultY = Math.Clamp(LocalPosition.Y, 23, 980);
+            LocalPosition = new Vector2(resultX, resultY);
 
+            base.Update(deltaTime);               
+        }
+        public float AddTwonumbers(float x, float y)
+        {
+            float sum = 0;
+            sum = x + y;
+            return sum;
+        }
         public override void OnCollision(Actor actor)
         {
             if (actor is Enemy)
