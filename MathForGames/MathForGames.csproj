@@ -8,6 +8,10 @@
   <ItemGroup>
     <None Remove="enemy.png" />
     <None Remove="Images\bullet.png" />
+    <None Remove="Images\meme.png" />
+    <None Remove="Images\MotherShip.png" />
+    <None Remove="Images\PlayerShip.png" />
+    <None Remove="Images\SawBlade.png" />
     <None Remove="player.png" />
   </ItemGroup>
 
@@ -18,7 +22,19 @@
     <Content Include="Images\enemy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\meme.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MotherShip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\player.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\PlayerShip.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SawBlade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -13,6 +13,7 @@ namespace MathForGames
         public Player _player;
         private float _maxViewingAngle;
         private float _maxSightDistance;
+        private float _health;
 
         
         //Allows us to give _ speed a value
@@ -40,14 +41,21 @@ namespace MathForGames
             get { return _maxSightDistance; }
             set { _maxSightDistance = value; }
         }
+        
+        public float Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
 
-        public Enemy(float x, float y, float speed, float maxSightDistance, float maxViewingAngle, Player player, string name = "Actor", string path = "")
+        public Enemy(float x, float y, float speed, float health, float maxSightDistance, float maxViewingAngle, Player player, string name = "Actor", string path = "")
             : base(x, y,name, path)
         {
             _speed = speed;
             _player = player;
             _maxViewingAngle = maxViewingAngle;
             _maxSightDistance = maxSightDistance;
+            _health = health;
         }
         public override void Update(float deltaTime)
         {
@@ -70,14 +78,21 @@ namespace MathForGames
             
             return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) < _maxViewingAngle;                                            
         }
+
         public bool GetTargetIndistance()
         { 
             return Vector2.Distance(_player.LocalPosition, LocalPosition) < _maxSightDistance;
         }
+
         public override void OnCollision(Actor actor)
-        {
-            Console.WriteLine("Son done recked");
-        }
+        {            
+            if (actor is Projectiles)
+            {
+                Health -= 1;                
+            }
+        
+    }
+
         public override void Draw()
         {
             base.Draw();

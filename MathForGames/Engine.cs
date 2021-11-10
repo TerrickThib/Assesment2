@@ -66,7 +66,7 @@ namespace MathForGames
             Scene scene = new Scene();
 
             //Sets what player is and size          
-            Player player = new Player(400, 980, 150, scene, "Player", "Images/player.png");
+            Player player = new Player(400, 980, 150, scene, "Player", "Images/PlayerShip.png");
             player.SetScale(50, 50);
             //player.SetTranslation(300, 300);            
 
@@ -77,13 +77,13 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
 
             //Sets enemy and enemys size
-            Enemy enemy = new Enemy(400, 23, 100, 1000, 180,player, "Eneme", "Images/enemy.png");
-            enemy.SetScale(50, 50);
+            Enemy enemy = new Enemy(400, 23, 50, 10, 1000, 360,player, "Eneme", "Images/meme.png");
+            enemy.SetScale(200, 200);
             enemy.LookAt(new Vector2(700, 900));
 
             //Sets Enemys hit box if circle or square
             CircleCollider enemyCircleCollider = new CircleCollider(50, enemy);
-            AABBCollider enemyBoxCollider = new AABBCollider(50, 50, enemy);
+            AABBCollider enemyBoxCollider = new AABBCollider(180, 180, enemy);
             enemy.Collider = enemyCircleCollider;
             enemy.Collider = enemyBoxCollider;
 
