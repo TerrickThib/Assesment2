@@ -13,7 +13,9 @@ namespace MathForGames
         private static bool _applicationShouldClose = false;
         private static int _currentSceneIndex;
         private Scene[] _scenes = new Scene[0];
-        private Stopwatch _stopwatch = new Stopwatch();      
+        private Stopwatch _stopwatch = new Stopwatch();
+        private Player _player;
+        private Enemy _enemy;
 
         /// <summary>
         /// Called to Begin the application
@@ -66,9 +68,10 @@ namespace MathForGames
             Scene scene = new Scene();
 
             //Sets what player is and size          
-            Player player = new Player(400, 980, 150, scene, "Player", "Images/PlayerShip.png");
+            Player player = new Player(400, 980, 5, 150, scene, "Player", "Images/PlayerShip.png");
             player.SetScale(50, 50);
-            //player.SetTranslation(300, 300);            
+            //player.SetTranslation(300, 300);
+            _player = player;
 
             //Sets the hit box for player if they have a circle hit box or squar hit box
             CircleCollider playerCircleCollider = new CircleCollider(50, player);
@@ -77,15 +80,15 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
 
             //Sets enemy and enemys size
-            Enemy enemy = new Enemy(400, 23, 50, 10, 1000, 360,player, "Eneme", "Images/meme.png");
+            Enemy enemy = new Enemy(400, 23, 50, 2, 1000, 360,player, scene, "Eneme", "Images/meme.png");
             enemy.SetScale(200, 200);
             enemy.LookAt(new Vector2(700, 900));
 
             //Sets Enemys hit box if circle or square
-            CircleCollider enemyCircleCollider = new CircleCollider(50, enemy);
-            AABBCollider enemyBoxCollider = new AABBCollider(180, 180, enemy);
+            CircleCollider enemyCircleCollider = new CircleCollider(80, enemy);
+            //AABBCollider enemyBoxCollider = new AABBCollider(180, 180, enemy);
             enemy.Collider = enemyCircleCollider;
-            enemy.Collider = enemyBoxCollider;
+            // enemy.Collider = enemyBoxCollider;
 
             //UI Text Section
             UIText text = new UIText(10, 10, "TestTextBox", Color.BLUE, 70, 70, 15, "Taco Bell Makes me yell");
@@ -113,7 +116,7 @@ namespace MathForGames
         private void Update(float deltaTime)
         {
             _scenes[_currentSceneIndex].Update(deltaTime);
-                        
+            
             //While there is a key in the input bufer read it
             while (Console.KeyAvailable)
             {
@@ -194,5 +197,6 @@ namespace MathForGames
         {
             _applicationShouldClose = true;
         }        
+        
     }
 }

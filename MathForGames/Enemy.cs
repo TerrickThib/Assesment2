@@ -14,6 +14,7 @@ namespace MathForGames
         private float _maxViewingAngle;
         private float _maxSightDistance;
         private float _health;
+        public Scene _scene;
 
         
         //Allows us to give _ speed a value
@@ -46,9 +47,9 @@ namespace MathForGames
         {
             get { return _health; }
             set { _health = value; }
-        }
+        }        
 
-        public Enemy(float x, float y, float speed, float health, float maxSightDistance, float maxViewingAngle, Player player, string name = "Actor", string path = "")
+        public Enemy(float x, float y, float speed, float health, float maxSightDistance, float maxViewingAngle, Player player,Scene scene, string name = "Actor", string path = "")
             : base(x, y,name, path)
         {
             _speed = speed;
@@ -56,9 +57,11 @@ namespace MathForGames
             _maxViewingAngle = maxViewingAngle;
             _maxSightDistance = maxSightDistance;
             _health = health;
+            _scene = scene;
         }
         public override void Update(float deltaTime)
         {
+            DeadRemove();
             //Inishalizes distance
             Vector2 distance = new Vector2();
             //Takes players position and eneme position to get differance
@@ -70,6 +73,7 @@ namespace MathForGames
                 LocalPosition += Velocity;
 
             base.Update(deltaTime);
+            LookAt(_player.WorldPosition);
         }
 
         public bool GetTargetInSight()
@@ -85,18 +89,29 @@ namespace MathForGames
         }
 
         public override void OnCollision(Actor actor)
-        {            
+        {
             if (actor is Projectiles)
             {
-                Health -= 1;                
+                Health -= 1;
             }
         
-    }
+        }
 
         public override void Draw()
         {
             base.Draw();
             Collider.Draw();
+        }
+
+        /// <summary>
+        /// Removes actor if there health is 0
+        /// </summary>
+        public void DeadRemove()
+        {
+            if (Health <= 0)
+            {
+                _scene.RemoveActor(this);
+            }
         }
     }
 }

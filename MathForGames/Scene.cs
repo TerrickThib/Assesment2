@@ -33,7 +33,7 @@ namespace MathForGames
         public virtual void Update(float deltaTime)
         {
             //Iterates through the actors
-            for(int i = 0; i < _actors.Length; i++)
+            for(int i = 0; i < _actors.Length;i++)
             {
                 if (!_actors[i].Started)
                 _actors[i].Start();
@@ -43,7 +43,7 @@ namespace MathForGames
                 //Check for collision _actors[j] is the array going through actors
                 for (int j = 0; j < _actors.Length; j++)
                 {
-                    if (_actors[i].CheckForCollision(_actors[j])&& j != i)
+                    if (_actors[i].WorldPosition == _actors[j].WorldPosition && j != i)
                         _actors[i].OnCollision(_actors[j]);
                     
                 }

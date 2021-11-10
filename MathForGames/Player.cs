@@ -12,7 +12,8 @@ namespace MathForGames
         private Vector2 _velocity;
         public Scene _scene;
         private float _cooldowntimer = 0.5f;
-        private float _timesincelastshot = 0;        
+        private float _timesincelastshot = 0;
+        private float _health = 0;        
 
         //Allows us to give _ speed a value
         public float Speed
@@ -27,19 +28,29 @@ namespace MathForGames
             get { return _velocity; }
             set { _velocity = value; }
         }
+
+        public float Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
           
-        public Player( float x, float y, float speed,Scene scene, string name = "Actor", string path = "") 
+        public Player( float x, float y, float health, float speed,Scene scene, string name = "Actor", string path = "") 
             : base(x, y, name, path)
         {
             _speed = speed;
             _scene = scene;
+            _health = health;
         }
 
         public override void Update(float deltaTime)
         {
+            //Checks if Health is 0 every update
+            DeadEndGame();
+
             //Sets time for cooldown timer
             _timesincelastshot += deltaTime;
-
+            
             //GEts the player input direction
             int xDirection = -Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_A))
                 + Convert.ToInt32(Raylib.IsKeyDown(KeyboardKey.KEY_D));            
@@ -94,17 +105,12 @@ namespace MathForGames
 
             base.Update(deltaTime);               
         }
-        public float AddTwonumbers(float x, float y)
-        {
-            float sum = 0;
-            sum = x + y;
-            return sum;
-        }
+        
         public override void OnCollision(Actor actor)
         {
-            if (actor is Enemy)
+            if (actor is EnemyProjectiles || actor is Enemy )
             {
-                Engine.CloseApplication();
+                Health -= 1;                
             }
         }
 
@@ -112,6 +118,17 @@ namespace MathForGames
         {
             base.Draw();
             Collider.Draw();
+        }
+
+        /// <summary>
+        /// If Health is 0 Close Application
+        /// </summary>
+        public void DeadEndGame()
+        {
+            if (Health <= 0)
+            {                
+                Engine.CloseApplication();                
+            }            
         }
     }
 }

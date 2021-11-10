@@ -241,7 +241,7 @@ namespace MathForGames
         }
         public virtual void OnCollision(Actor actor)
         {
-
+            
         }
 
         /// <summary>

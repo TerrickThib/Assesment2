@@ -6,7 +6,7 @@ using Raylib_cs;
 
 namespace MathForGames
 {
-    class Projectiles : Actor
+    class EnemyProjectiles : Actor
     {
         private float _speed;
         private Vector2 _velocity;
@@ -27,7 +27,7 @@ namespace MathForGames
             set { _velocity = value; }
         }
 
-        public Projectiles(float x, float y, float speed, int xdirection, int ydirection, Scene scene, string name = "Actor", string path = "")
+        public EnemyProjectiles(float x, float y, float speed, int xdirection, int ydirection, Scene scene, string name = "Actor", string path = "")
             : base(x, y, name, path)
         {
             _speed = speed;
@@ -37,7 +37,7 @@ namespace MathForGames
         }
 
         public override void Update(float deltaTime)
-        {            
+        {
             //Creat a vector that stores the move input            
             Vector2 moveDirection = new Vector2(_xdirection, _ydirection);
 
@@ -46,34 +46,19 @@ namespace MathForGames
             //Uses velocity with current Position
             LocalPosition += Velocity;
 
-            BuletOutOfBounds();
             base.Update(deltaTime);
         }
 
-        /// <summary>
-        /// On colision with a enemy or enemy Projectile Remove bullet
-        /// </summary>
-        /// <param name="actor"></param>
         public override void OnCollision(Actor actor)
         {
-            if (actor is Enemy || actor is EnemyProjectiles)
-            {                
-                _scene.RemoveActor(this);                
-            }
+
         }
 
         public override void Draw()
         {
             base.Draw();
             Collider.Draw();
-        }        
-
-        private void BuletOutOfBounds()
-        {
-            if (LocalPosition.X < 23 || LocalPosition.X > 780)
-            {
-                _scene.RemoveActor(this);
-            }
         }
     }
 }
+
