@@ -80,7 +80,7 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
 
             //Sets enemy and enemys size
-            Enemy enemy = new Enemy(400, 23, 50, 2, 1000, 360,player, scene, "Eneme", "Images/meme.png");
+            Enemy enemy = new Enemy(400, 23, 50, 5, 1000, 1000f,player, scene, "Eneme", "Images/meme.png");
             enemy.SetScale(200, 200);
             enemy.LookAt(new Vector2(700, 900));
 
@@ -94,13 +94,23 @@ namespace MathForGames
             UIText text = new UIText(10, 10, "TestTextBox", Color.BLUE, 70, 70, 15, "Taco Bell Makes me yell");
             
 
-            Actor child = new Actor(1, 1, "Child", "Images/enemy.png");
-            child.SetScale(1, 1);
-            child.SetTranslation(1, 1);
-            player.AddChild(child);
-            
+            //Child Shotgun
+            Actor child = new Actor(0.5f, -0.4f, "Shotgun", "Images/Shotgun.png");
+            child.SetScale(0.8f, 0.5f);
+            enemy.AddChild(child);
+
+            //Child Smashbros
+            SmashBros child2 = new SmashBros(0.5f, 0.4f, player, "SmashBros", "Images/SmashBros.png");
+            child2.SetScale(0.5f, 0.5f);
+            AABBCollider smashBoxCollider = new AABBCollider(100, 100, child2);
+            child2.Collider = smashBoxCollider;
+            enemy.AddChild(child2);
+
+            //Addes the actors to the scene
             scene.AddActor(player);                                                          
             scene.AddActor(enemy);
+            scene.AddActor(child);
+            scene.AddActor(child2);
             //scene.AddActor(text);
 
             _currentSceneIndex = AddScene(scene);

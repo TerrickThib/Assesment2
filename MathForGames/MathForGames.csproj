@@ -12,6 +12,8 @@
     <None Remove="Images\MotherShip.png" />
     <None Remove="Images\PlayerShip.png" />
     <None Remove="Images\SawBlade.png" />
+    <None Remove="Images\Shotgun.png" />
+    <None Remove="Images\SmashBros.png" />
     <None Remove="player.png" />
   </ItemGroup>
 
@@ -35,6 +37,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\SawBlade.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Shotgun.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\SmashBros.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
