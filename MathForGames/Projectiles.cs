@@ -51,13 +51,18 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// On colision with a enemy or enemy Projectile Remove bullet
+        /// On colision with a enemy or enemyProjectiles decrment health by 1 and set actors health to be enemy actor then remove the projectile.
         /// </summary>
         /// <param name="actor"></param>
         public override void OnCollision(Actor actor)
         {
             if (actor is Enemy || actor is EnemyProjectiles)
-            {                
+            {
+                //Create a enemy Actor that takes in the actors valuethen decrement there health then set it to be the current actor.
+                Enemy enemyActor = (Enemy)actor;
+                enemyActor.Health--;
+                actor = enemyActor;
+
                 _scene.RemoveActor(this);                
             }
         }
@@ -68,12 +73,15 @@ namespace MathForGames
             Collider.Draw();
         }        
 
-        private void BuletOutOfBounds()
+        /// <summary>
+        /// Uses Local Position to set a Boundry which if reached will delete the actor.
+        /// </summary>
+        public virtual void BuletOutOfBounds()
         {
-            if (LocalPosition.X < 23 || LocalPosition.X > 780)
+            if (LocalPosition.X < 23 || LocalPosition.X > 780 ||LocalPosition.Y < 23 || LocalPosition.Y > 980 )
             {
                 _scene.RemoveActor(this);
             }
-        }
+        }       
     }
 }

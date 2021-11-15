@@ -59,6 +59,17 @@ namespace MathForGames
             base.Draw();
             Collider.Draw();
         }
+        
+        /// <summary>
+        /// Uses Local Position to set a Boundry witch if reached will delete the actor.
+        /// </summary>
+        public virtual void BuletOutOfBounds()
+        {
+            if (LocalPosition.X < 23 || LocalPosition.X > 780 || LocalPosition.Y < 23 || LocalPosition.Y > 980)
+            {
+                _scene.RemoveActor(this);
+            }
+        }
     }
 }
 

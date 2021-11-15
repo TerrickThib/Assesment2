@@ -46,7 +46,7 @@ namespace MathForGames
         public override void Update(float deltaTime)
         {
             //Checks if Health is 0 every update
-            DeadEndGame();
+            DeadEndGame();            
 
             //Sets time for cooldown timer
             _timesincelastshot += deltaTime;
@@ -105,10 +105,10 @@ namespace MathForGames
 
             base.Update(deltaTime);               
         }
-        
+        //If collision happens with these actors decreas health
         public override void OnCollision(Actor actor)
         {
-            if (actor is EnemyProjectiles || actor is Enemy )
+            if (actor is EnemyProjectiles || actor is Enemy || actor is SmashBros )
             {
                 Health -= 1;                
             }

@@ -61,7 +61,8 @@ namespace MathForGames
         }
         public override void Update(float deltaTime)
         {
-            DeadRemove();
+            HealthNoneDead();
+            IfHealthLowUpgrade();
             //Inishalizes distance
             Vector2 distance = new Vector2();
             //Takes players position and eneme position to get differance
@@ -76,6 +77,10 @@ namespace MathForGames
             LookAt(_player.WorldPosition);
         }
 
+        /// <summary>
+        /// Gets players position relative to youres and normlizes it
+        /// </summary>
+        /// <returns>Moves Enemy if players positiob is less than the max viewing angle
         public bool GetTargetInSight()
         {            
             Vector2 directionOfTarget = (_player.LocalPosition - LocalPosition).Normalized;                      
@@ -83,6 +88,10 @@ namespace MathForGames
             return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) < _maxViewingAngle;                                            
         }
 
+        /// <summary>
+        /// Gets the distance from player and sees if its with in sight distance
+        /// </summary>
+        /// <returns>Enemys movement if the difrence is less than max sight distance</returns>
         public bool GetTargetIndistance()
         { 
             return Vector2.Distance(_player.LocalPosition, LocalPosition) < _maxSightDistance;
@@ -90,11 +99,7 @@ namespace MathForGames
 
         public override void OnCollision(Actor actor)
         {
-            if (actor is Projectiles)
-            {
-                Health -= 1;
-            }
-        
+          
         }
 
         public override void Draw()
@@ -104,13 +109,25 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// Removes actor if there health is 0
+        /// Removes actor if there health is 1 scale it up and replenish some health
         /// </summary>
-        public void DeadRemove()
+        public void IfHealthLowUpgrade()
         {
-            if (Health <= 0)
+            if (Health == 5)
+            {
+                SetScale(300, 300);
+            }
+        }
+
+        /// <summary>
+        /// If enemys Health reaches 0 Remove the actor
+        /// </summary>
+        public void HealthNoneDead()
+        {
+            if(Health <= 0)
             {
                 _scene.RemoveActor(this);
+                Engine.CloseApplication();
             }
         }
     }

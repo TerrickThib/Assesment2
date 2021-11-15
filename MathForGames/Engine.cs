@@ -68,7 +68,7 @@ namespace MathForGames
             Scene scene = new Scene();
 
             //Sets what player is and size          
-            Player player = new Player(400, 980, 5, 150, scene, "Player", "Images/PlayerShip.png");
+            Player player = new Player(400, 980, 1, 150, scene, "Player", "Images/PlayerShip.png");
             player.SetScale(50, 50);
             //player.SetTranslation(300, 300);
             _player = player;
@@ -80,12 +80,12 @@ namespace MathForGames
             player.Collider = playerBoxCollider;
 
             //Sets enemy and enemys size
-            Enemy enemy = new Enemy(400, 23, 50, 5, 1000, 1000f,player, scene, "Eneme", "Images/meme.png");
-            enemy.SetScale(200, 200);
+            Enemy enemy = new Enemy(400, 23, 50, 10, 1000, 1000f,player, scene, "Eneme", "Images/meme.png");
+            enemy.SetScale(150, 150);
             enemy.LookAt(new Vector2(700, 900));
 
             //Sets Enemys hit box if circle or square
-            CircleCollider enemyCircleCollider = new CircleCollider(80, enemy);
+            CircleCollider enemyCircleCollider = new CircleCollider(60, enemy);
             //AABBCollider enemyBoxCollider = new AABBCollider(180, 180, enemy);
             enemy.Collider = enemyCircleCollider;
             // enemy.Collider = enemyBoxCollider;
@@ -102,7 +102,7 @@ namespace MathForGames
             //Child Smashbros
             SmashBros child2 = new SmashBros(0.5f, 0.4f, player, "SmashBros", "Images/SmashBros.png");
             child2.SetScale(0.5f, 0.5f);
-            AABBCollider smashBoxCollider = new AABBCollider(100, 100, child2);
+            AABBCollider smashBoxCollider = new AABBCollider(80, 80, child2);
             child2.Collider = smashBoxCollider;
             enemy.AddChild(child2);
 
