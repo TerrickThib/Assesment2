@@ -85,15 +85,9 @@ namespace MathForGames
             enemy.LookAt(new Vector2(700, 900));
 
             //Sets Enemys hit box if circle or square
-            CircleCollider enemyCircleCollider = new CircleCollider(60, enemy);
-            //AABBCollider enemyBoxCollider = new AABBCollider(180, 180, enemy);
-            enemy.Collider = enemyCircleCollider;
-            // enemy.Collider = enemyBoxCollider;
-
-            //UI Text Section
-            UIText text = new UIText(10, 10, "TestTextBox", Color.BLUE, 70, 70, 15, "Taco Bell Makes me yell");
-            
-
+            CircleCollider enemyCircleCollider = new CircleCollider(60, enemy);           
+            enemy.Collider = enemyCircleCollider;            
+                        
             //Child Shotgun
             Actor child = new Actor(0.5f, -0.4f, "Shotgun", "Images/Shotgun.png");
             child.SetScale(0.8f, 0.5f);
@@ -111,8 +105,7 @@ namespace MathForGames
             scene.AddActor(enemy);
             scene.AddActor(child);
             scene.AddActor(child2);
-            //scene.AddActor(text);
-
+           
             _currentSceneIndex = AddScene(scene);
             _scenes[_currentSceneIndex].Start();
 

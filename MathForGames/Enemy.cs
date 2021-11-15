@@ -85,7 +85,7 @@ namespace MathForGames
         {            
             Vector2 directionOfTarget = (_player.LocalPosition - LocalPosition).Normalized;                      
             
-            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) < _maxViewingAngle;                                            
+            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) <= 360;                                            
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace MathForGames
         /// <returns>Enemys movement if the difrence is less than max sight distance</returns>
         public bool GetTargetIndistance()
         { 
-            return Vector2.Distance(_player.LocalPosition, LocalPosition) < _maxSightDistance;
+            return Vector2.Distance(_player.LocalPosition, LocalPosition) <= _maxSightDistance;
         }
 
         public override void OnCollision(Actor actor)
