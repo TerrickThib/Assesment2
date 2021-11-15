@@ -13,6 +13,10 @@ namespace MathForGames
             : base(x, y, name, path)
         {}
 
+        /// <summary>
+        /// Calls everetime the game runs changes rotation and updates using delta timed
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public override void Update(float deltaTime)
         {
             this.Rotate(0.2f);

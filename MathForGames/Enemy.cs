@@ -70,11 +70,11 @@ namespace MathForGames
             distance.Normalize();
             Velocity = distance.Normalized * Speed * deltaTime;
 
-            if(GetTargetInSight()&& GetTargetIndistance())
+            if(GetTargetIndistance())
                 LocalPosition += Velocity;
 
             base.Update(deltaTime);
-            LookAt(_player.WorldPosition);
+            LookAt(_player.LocalPosition);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace MathForGames
         {            
             Vector2 directionOfTarget = (_player.LocalPosition - LocalPosition).Normalized;                      
             
-            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) <= 360;                                            
+            return Math.Acos(Vector2.DotProduct(directionOfTarget, Forward)) <= _maxViewingAngle;                                            
         }
 
         /// <summary>
@@ -97,6 +97,7 @@ namespace MathForGames
             return Vector2.Distance(_player.LocalPosition, LocalPosition) <= _maxSightDistance;
         }
 
+        
         public override void OnCollision(Actor actor)
         {
           
@@ -116,6 +117,7 @@ namespace MathForGames
             if (Health == 5)
             {
                 SetScale(300, 300);
+                Collider.SetScale(120);
             }
         }
 

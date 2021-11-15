@@ -53,5 +53,9 @@ namespace MathForGames
         {
 
         }
+        public virtual void SetScale(float value)
+        {
+
+        }
     }    
 }

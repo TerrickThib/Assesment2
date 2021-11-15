@@ -67,5 +67,9 @@ namespace MathForGames
             base.Draw();
             Raylib.DrawCircleLines((int)Owner.WorldPosition.X, (int)Owner.WorldPosition.Y, CollisionRadius, Color.BLUE);
         }
+        public override void SetScale(float value)
+        {
+            _collisionRadius = value;
+        }
     }
 }
