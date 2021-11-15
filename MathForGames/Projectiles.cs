@@ -56,7 +56,7 @@ namespace MathForGames
         /// <param name="actor"></param>
         public override void OnCollision(Actor actor)
         {
-            if (actor is Enemy || actor is EnemyProjectiles)
+            if (actor is Enemy)
             {
                 //Create a enemy Actor that takes in the actors valuethen decrement there health then set it to be the current actor.
                 Enemy enemyActor = (Enemy)actor;

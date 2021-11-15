@@ -21,6 +21,11 @@ namespace MathForGames
             _collisionRadius = collisionRadius;
         }
 
+        /// <summary>
+        /// Checks for Circle Colision with onother Circle Collider
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>If distance between the two coliders is less than the Combined Radii</returns>
         public override bool CheckCollisionCircle(CircleCollider other)
         {
             if (other.Owner == Owner)

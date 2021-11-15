@@ -139,6 +139,9 @@ namespace MathForGames
             }
         }
         
+        /// <summary>
+        /// Updates LocalTransforms and global transforms depending on the change
+        /// </summary>
         public void UpdateTransforms()
         {
             _localTransform = _translation * _rotation * _scale;
@@ -153,6 +156,7 @@ namespace MathForGames
             }
         }
 
+        //Adds a Child to the scene
         public void AddChild(Actor child)
         {
             //Creats a temp array that is larger than the orignal array
@@ -174,6 +178,7 @@ namespace MathForGames
             _children = tempArray;           
         }
 
+        //Removes a Child actor
         public bool RemoveChild(Actor child)
         {
             //Create a variable to store if the removal was successful
@@ -213,19 +218,19 @@ namespace MathForGames
 
             return actorRemoved;
         }
-
+        
         public virtual void Start()
         {
             _started = true;
         }
-
+        //Updates the actors Local x and y
         public virtual void Update(float deltaTime)
         {            
-            Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);
-            //this.Rotate(0.05f);
+            Console.WriteLine(_name + ": " + LocalPosition.X + ", " + LocalPosition.Y);            
             UpdateTransforms();
         }
 
+        //Draws the sprites to the screen
         public virtual void Draw()
         {
             if (_sprite != null)
@@ -239,6 +244,7 @@ namespace MathForGames
         {
 
         }
+
         public virtual void OnCollision(Actor actor)
         {
             

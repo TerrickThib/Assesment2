@@ -126,7 +126,7 @@ namespace MathForGames
         {
             if(Health <= 0)
             {
-                _scene.RemoveActor(this);
+                _scene.RemoveActor(this);                
                 Engine.CloseApplication();
             }
         }

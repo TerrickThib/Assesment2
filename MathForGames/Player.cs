@@ -108,7 +108,7 @@ namespace MathForGames
         //If collision happens with these actors decreas health
         public override void OnCollision(Actor actor)
         {
-            if (actor is EnemyProjectiles || actor is Enemy || actor is SmashBros )
+            if (actor is Enemy || actor is SmashBros )
             {
                 Health -= 1;                
             }

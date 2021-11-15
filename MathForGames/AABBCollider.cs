@@ -72,7 +72,7 @@ namespace MathForGames
                 return Owner.WorldPosition.Y + Height/2;
             }
         }
-
+        //Sets what a AABBCollider is and will take in
         public AABBCollider(float width, float height, Actor owner) : base(owner, ColliderType.AABB)
         {
             _width = width;
@@ -97,10 +97,16 @@ namespace MathForGames
             return false;
         }
 
+        /// <summary>
+        /// Checks for collision with circle colider
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns>If no circle collision retirn AABB colision</returns>
         public override bool CheckCollisionCircle(CircleCollider other)
         {
             return other.CheckCollisionAABB(this);
         }
+        
         public override void Draw()
         {
             //Draws the square hitBoxd

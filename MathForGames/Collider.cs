@@ -33,6 +33,7 @@ namespace MathForGames
             _colliderType = colliderType;
         }
 
+        //Returns the Type of Collision depending on colliders
         public bool CheckCollision(Actor other)
         {
             if (other.Collider.ColliderType == ColliderType.CIRCLE)
