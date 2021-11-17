@@ -111,7 +111,8 @@ All Objects are in there own class which could inherete from onother class. Ther
         * Name: SetScale(float value)  
             * Description: Sets a template for set scale  
             * Visiblity: Public  
-    * **File Name:** Actor.cs  
+    * **File Name:** Actor.cs   
+    * **Class Name:** Actor 
         * Name: Started  
             * Description: Returns start  
             * Visiblity: Public            
@@ -215,8 +216,203 @@ All Objects are in there own class which could inherete from onother class. Ther
             * Description: Finds the direction the actors should be looking and roates the actors so it looks at that given position  
             * Visablity: Public  
             * Arguments: Vector2 position, LocalPosition and Forward   
-    * **File Name**  
-        * Name:
+    * **File Name** Enemy.cs   
+    * **Class Name:** Enemy   
+        * Name: Speed  
+            * Description: Holds a varable for speed and returns _speed and sets it a value 
+            * Visablity: Public  
+        * Name: Vector2 Velocity  
+            * Description: Holds a value for velocity and returns _ velocity  
+            * Visablity: Public  
+        * Name: MaxViewingAngle  
+            * Description: Holds a value for viewing angle and returns _maxViewingAngle  
+            * Visablity: Public 
+        * Name: MaxSightDistance  
+            * Description: Holds a value for MaxSightDistance and returns _maxsightdistance  
+            * Visablity: Public  
+        * Name: Health  
+            * Description: Holds a value for health and returns _health  
+            * Visablity: Public 
+        * Name: Enemy(float x, float y, float speed, float health, float maxSightDistance, float maxViewingAngle, Player player,Scene scene, string name = "Actor", string path = "")
+            : base(x, y,name, path)  
+            * Description: Declares what values a enemy will need to have  
+            *Visablity: Public  
+        * Name: Update(float deltaTime)     
+            * Description: Updates the enemys based on the game.   
+            * Visablity: Public  
+        * Name: GetTargetInSight( )  
+            * Description: Gets players position relative to yours and normalises it  
+            * Visablity: Public  
+        * Name: GetTargetIndistance( )  
+            * Description: Gets the distance of the player from the enmey to see if its with in sight distance  
+            * Viablity: Public  
+        * Name: OnCollision(Actor actor)  
+            * Description: Empty for colision with a actor  
+            * Visablity: Public  
+        * Name: Draw( ) 
+            * Description: Calls Base Draw and draws Colliders  
+            * Visablity: Public  
+        * Name: IfHealthLowUpgrade( )  
+            * Description: If actors health equals 5 set scale and change collider size  
+            * Visablity: Public  
+        * Name: HealthNoneDead( ) 
+            * Description: If actors health equals 0 or less remove actor from scene and end game  
+            * Visablity: Public 
+    * **File Name** Player.cs   
+    * **Class Name:** Player
+        * Name: Speed  
+            * Description: Sets a value for speed and returns _speed 
+            * Visablity: Public  
+        * Name: Vector2 Velocity 
+            * Description: Sets a value for velocity and returns _velocity   
+            * Visablity: Public  
+        * Name: Health  
+            * Description: Sets a value for Health and returns _health 
+            * Visablity: Public  
+        * Name: _cooldowntimer  
+            * Description: Creates a cooldown timer that has a default value of o.5f   
+            * Visablity: Private  
+        * Name: _timesincelastshot  
+            * Discription: Holds a value of 0 to reset timer  
+            * Visablity: Private  
+        * Name: Player ( float x, float y, float health, float speed,Scene scene, string name = "Actor", string path = "") 
+            : base(x, y, name, path)  
+            * Description: Declares what values a player will have  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)  
+            * Description: Updates the player based on the game
+            * Visablity: Public  
+        * Name: OnCollision(Actor actor) 
+            * Description: If collision happens with a enemy of Smashbros decrment players health  
+            * Visablity: Public  
+        * Name: Draw( )  
+            * Description: Calls BAse draw and draws colliders  
+            * Visablity: Public  
+        * Name: DeadEndGame( )  
+            * Description: If players health =< 0 then Close engine  
+            * Visablity: Public  
+    * **File Name** Projectiles.cs   
+    * **Class Name:** Projectiles 
+        * Name: Speed  
+            * Description: Sets a value for speed and returns _speed 
+            * Visablity: Public  
+        * Name: Vector2 Velocity 
+            * Description: Sets a value for velocity and returns _velocity   
+            * Visablity: Public   
+        * Name: _xdirection  
+            * Description: a varable for the x direction  
+            * Visablity: Private  
+        * Name: _ydirection  
+            * Description: a varable for the y direction  
+            * Visablity: Private  
+        * Name: Projectiles(float x, float y, float speed, int xdirection, int ydirection, Scene scene, string name = "Actor", string path = "")
+            : base(x, y, name, path)  
+            * Description: Sets what values a Projectile should have  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)   
+            * Description: Updates the Projectile 
+            * Visablity: Public  
+        * Name: OnCollision(Actor actor)  
+            * Description: If the projectile collides with a enemy decrement enemmy health by -1 and removes this actor
+            * Visablity: Public  
+        * Name: Draw( )  
+            * Description: Calls base Draw and Collider draw  
+            * Visablity: Public   
+        * Name: BuletOutOfBounds( )  
+            * Description: If Projectile reaches the set boundres remove that actor  
+            * Visablity: Public  
+    * **File Name** SmashBros.cs  
+        * Name: SmashBros(float x, float y, Player player, string name = "Actor", string path = "")
+            : base(x, y, name, path)  
+            * Description: Sets the values that SMashBros should have  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)  
+            * Description: Updates Smashbros  
+            * Visablity: Public  
+        * Name: Draw( )  
+            * Description: Calls base Draw and Collider draw  
+            * Visablity: Public    
+        * Name: OnCollision(Actor actor)  
+            * Description: Would be called OcCollision  
+            * Visablity: Public  
+    * **File Name** Sprite.cs  
+        * Name: Width 
+            * Description: Is the width the sprite will be and returns _texture.width   
+            * Visiblity: Public  
+        * Name: Height  
+            * Description: Is the height the sprite will be and return _texture.height 
+            * Visiblity: Public   
+        * Name: Sprite(string path)  
+            * Description: Will take in a path then uses it to load texture  
+            * Visablity: Public  
+        * Name: Draw(Matrix3 transform)  
+            * Description: Finds the scale of the sprite and sets the sprites center to be the transfoms orgin and draws the sprite  
+            * Visablity: Public  
+    * **File Name** Scene.cs  
+        * Name: Scene( )  
+            * Description: Puts _ actors into a Actors array  
+            * Visablity: Public  
+        * Name: Start( )  
+            * Description: Calls start for all the actors in the actor array  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)  
+            * Description: Calls Update for every actor in the scene  
+            * Viablity: Public  
+        * Name: Draw( )  
+            * Description: Calls draw for every actor in the array  
+            * Viablity: Public  
+        * Name: End()  
+            * Description: Calls End for all the actors in the array  
+            * Visablity: Public  
+        * Name: AddActor(Actor actor)  
+            * Description: Adds a actor to the scene  
+            * Visabity: Public  
+        * Name: RemoveActor(Actor actor)  
+            * Description: Removes a actor from the scene  
+            * Visablity: Public  
+    * **File Name** Engine.cs  
+        * Name: _applicationShouldClose  
+            * Description: Set to false called true when application should close  
+            * Visablity: Private 
+        * Name: _currewntSceneIndex  
+            * Description: Keeps track of the games current scene 
+            * Visablity: Private  
+        * Name: Scene[] _ scenes  
+            * Description: Creates a array of scenes for the game to use  
+            * Visablity: Private  
+        * Name: Stopwatch _ stopwatch   
+            * Description: Creates a varble stopwatch that keeps track of time  
+            * Visablity: Private  
+        * Name: Run( )  
+            * Description: Is called to begin the application  
+            * Visablity: Public  
+        * Name: Start() 
+            * Description: Intalizes all the game logic and anything that needs to be there from the begining  
+            * Visablity: Private 
+        * Name: Update(float deltaTime)  
+            * Description: Updates everytime the game loops   
+            * Visablity: Private  
+        * Name: Draw( )  
+            * Description: Is called evertime the game loops draws visuals  
+            * Visablity: Private  
+        * Name: End( )  
+            * Description: Closes the game and window  
+            * Visablity: Private  
+        * Name: AddScene(Scene scene)  
+            * Description: Adds a scene to the engins scene array  
+            * Visablity: Public  
+        * Name: ConsoleKey GetNextKey()  
+            * Description: Gets the next key in the input stream  
+            * Visablity: Public 
+        * Name: CloseApplication( )  
+            * Description: Causes the application should close to be true Ending application  
+            * Visablity: Public  
+        * Name: InitaliseActors() 
+            * Decription: Adds and creats all my actors for the game   
+            * Visability: Private
+
+
+
         
             
             

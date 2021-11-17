@@ -65,49 +65,8 @@ namespace MathForGames
             Raylib.InitWindow(800, 1000, "Math For Games");          
             Raylib.SetTargetFPS(60);
 
-            Scene scene = new Scene();
-
-            //Sets what player is and size          
-            Player player = new Player(400, 980, 1, 150, scene, "Player", "Images/PlayerShip.png");
-            player.SetScale(50, 50);
-            //player.SetTranslation(300, 300);
-            _player = player;
-
-            //Sets the hit box for player if they have a circle hit box or squar hit box
-            CircleCollider playerCircleCollider = new CircleCollider(50, player);
-            AABBCollider playerBoxCollider = new AABBCollider(50, 50, player);
-            player.Collider = playerCircleCollider;
-            player.Collider = playerBoxCollider;
-
-            //Sets enemy and enemys size
-            Enemy enemy = new Enemy(400, 23, 50, 10, 1000, 1000f,player, scene, "Eneme", "Images/meme.png");
-            enemy.SetScale(150, 150);
-            enemy.LookAt(new Vector2(700, 900));
-
-            //Sets Enemys hit box if circle or square
-            CircleCollider enemyCircleCollider = new CircleCollider(60, enemy);           
-            enemy.Collider = enemyCircleCollider;            
-                        
-            //Child Shotgun
-            Actor child = new Actor(0.5f, -0.4f, "Shotgun", "Images/Shotgun.png");
-            child.SetScale(0.8f, 0.5f);
-            enemy.AddChild(child);
-
-            //Child Smashbros
-            SmashBros child2 = new SmashBros(0.5f, 0.4f, player, "SmashBros", "Images/SmashBros.png");
-            child2.SetScale(0.5f, 0.5f);
-            AABBCollider smashBoxCollider = new AABBCollider(80, 80, child2);
-            child2.Collider = smashBoxCollider;
-            enemy.AddChild(child2);
-
-            //Addes the actors to the scene
-            scene.AddActor(player);                                                          
-            scene.AddActor(enemy);
-            scene.AddActor(child);
-            scene.AddActor(child2);
-           
-            _currentSceneIndex = AddScene(scene);
-            _scenes[_currentSceneIndex].Start();
+            //Inlizes characters
+            InitaliseActors();
 
             //Makes curser go bye bye
             Console.CursorVisible = false;
@@ -200,6 +159,55 @@ namespace MathForGames
         {
             _applicationShouldClose = true;
         }        
-        
+
+        /// <summary>
+        /// Inatlizes all my actors in the game
+        /// </summary>
+        private void InitaliseActors()
+        {
+            Scene scene = new Scene();
+
+            //Sets what player is and size          
+            Player player = new Player(400, 980, 1, 150, scene, "Player", "Images/PlayerShip.png");
+            player.SetScale(50, 50);
+            //player.SetTranslation(300, 300);
+            _player = player;
+
+            //Sets the hit box for player if they have a circle hit box or squar hit box
+            CircleCollider playerCircleCollider = new CircleCollider(50, player);
+            AABBCollider playerBoxCollider = new AABBCollider(50, 50, player);
+            player.Collider = playerCircleCollider;
+            player.Collider = playerBoxCollider;
+
+            //Sets enemy and enemys size
+            Enemy enemy = new Enemy(400, 23, 50, 10, 1000, 1000f, player, scene, "Eneme", "Images/meme.png");
+            enemy.SetScale(150, 150);
+            enemy.LookAt(new Vector2(700, 900));
+
+            //Sets Enemys hit box if circle or square
+            CircleCollider enemyCircleCollider = new CircleCollider(60, enemy);
+            enemy.Collider = enemyCircleCollider;
+
+            //Child Shotgun
+            Actor child = new Actor(0.5f, -0.4f, "Shotgun", "Images/Shotgun.png");
+            child.SetScale(0.8f, 0.5f);
+            enemy.AddChild(child);
+
+            //Child Smashbros
+            SmashBros child2 = new SmashBros(0.5f, 0.4f, player, "SmashBros", "Images/SmashBros.png");
+            child2.SetScale(0.5f, 0.5f);
+            AABBCollider smashBoxCollider = new AABBCollider(80, 80, child2);
+            child2.Collider = smashBoxCollider;
+            enemy.AddChild(child2);
+
+            //Addes the actors to the scene
+            scene.AddActor(player);
+            scene.AddActor(enemy);
+            scene.AddActor(child);
+            scene.AddActor(child2);
+
+            _currentSceneIndex = AddScene(scene);
+            _scenes[_currentSceneIndex].Start();
+        }
     }
 }

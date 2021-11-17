@@ -62,7 +62,7 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// 
+        /// Calls end for all the actors
         /// </summary>
         public virtual void End()
         {
