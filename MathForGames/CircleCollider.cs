@@ -10,6 +10,7 @@ namespace MathForGames
     {
         private float _collisionRadius;
 
+        //Makes it so collisionRadius is able to be used in other parts of game
         public float CollisionRadius
         {
             get { return _collisionRadius; }
@@ -65,8 +66,9 @@ namespace MathForGames
         public override void Draw()
         {
             base.Draw();
-            Raylib.DrawCircleLines((int)Owner.WorldPosition.X, (int)Owner.WorldPosition.Y, CollisionRadius, Color.BLUE);
+            //Raylib.DrawCircleLines((int)Owner.WorldPosition.X, (int)Owner.WorldPosition.Y, CollisionRadius, Color.BLUE);
         }
+        //Sets value to be Collision Radius
         public override void SetScale(float value)
         {
             _collisionRadius = value;

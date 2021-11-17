@@ -110,7 +110,7 @@ namespace MathForGames
         public override void Draw()
         {
             //Draws the square hitBoxd
-            Raylib.DrawRectangleLines((int)Left, (int)Top, (int)Width, (int)Height, Color.BLUE);
+            //Raylib.DrawRectangleLines((int)Left, (int)Top, (int)Width, (int)Height, Color.BLUE);
         }
     }
 }

@@ -1,0 +1,228 @@
+**Terrick Thibodeaux**  
+s218032  
+Math For Games  
+Assment 2, Translation, Rotation, Scale  
+
+# I.Requirements  
+**1.Description of Problem**
+
+**Name:** Assment 2 
+
+**Problem Statement:**  
+Creation of a 2D or 3D application that demostrates Rotation, translation, scale and a Matrix Heiercy, Also demenstats use of AABB Colliders or Circle Coliders.  
+
+**Problem Specifications:**     
+- Shows the use of Matrix Heiercy using a parent child Relationship.  
+- The game shows Rotation by having a child parented that shows rotation.
+- The game also shows scale by scaling the enemy which also scales the child.   
+- Shows translation by haveing both the player and the enemy move around the game area.  
+- Shows a example of AABB Colision.
+
+
+**2.Input Information**   
+- Takes in players movement, to navigate the play area.  
+- Takes in players use of projectiles, to determine if it colides with enemy.  
+- Also uses players location, to have enemy follow him.  
+- Also uses players Location to figure out Velocity.  
+
+**3.Output Information**  
+- Uses the information gathered to progress the game by killing the enemy or your self.  
+
+**4.User Interface Information**  
+- Displays The players sprite as well as the enemy.   
+
+# II.Design  
+1. *System Architecture*  
+All Objects are in there own class which could inherete from onother class. There are child actors which are tied to there Parent actor. This Parent actor Pesutes the players Actor and will do damage if touched. The Game Engine uses a Start, Update, Draw  and EndFunction as well as a Scene class to progress through the game.   
+
+2. *Object Information  
+    * **File Name:** AABBCollider.cs  
+        * Name: Width 
+            * Description: Is the width the collider box will be    
+            * Visiblity: Public  
+        * Name: Height  
+            * Description: Is the height the collider box will be  
+            * Visiblity: Public 
+        * Name: Left 
+            * Description: Is the farthest left x position of this collider
+            * Visiblity: Public 
+        * Name: Right 
+            * Description: Is the farthest right x position of this collider  
+            * Visiblity: Public  
+        * Name: Top   
+            * Description: Is the farthest y position upwards of this collider  
+            * Visiblity: Public  
+        * Name: Bottom  
+            * Description: Is the farthest y position downwards of this collider  
+            * Visiblity: Public  
+        * Name: AABBCollider(float width, float height, Actor owner) : base(owner, ColliderType.AABB)    
+            * Description: Is declairing what a AABBCollider will need to be created.  
+            * Visiblity: Public  
+        * Name: CheckCollisionAABB(AABBCollider other)  
+            * Description: Checks if there is a overlap of hit boxes between a AABBCollider to see if collision happens if there is return true there is collision if not return false.  
+            * Visiblity: Public  
+        * Name: CheckCollisionCircle(CircleCollider other)  
+            * Description: Checks to see if there is collision with a circle collider if there is none return AABBCollision.  
+            * Visiblity: Public  
+        * Name: Draw ( )  
+            * Description: If needed draws hit boxs.  
+            * Visiblity: Public   
+    * **File Name:** CircleCollider.cs  
+        * Name: CollisionRadius  
+            * Description: Is the size of the circle hit box also allows it to be used in other parts of code  
+            * Visiblity: Public  
+        * Name: CircleCollider(float collisionRadius, Actor owner) : base(owner, ColliderType.Circle)    
+            * Description: Declares what a circle collider is and what values it will take in  
+            * Visiblity: Public  
+        * Name: CheckCollisionCircle(CircleCollider other)  
+            * Description: Finds the distance between the two actors and the radii combined and if the distance between the two colliders are less than the radii return collision  
+            * Visiblity: Public  
+        * Name: CheckCollisionAABB(AABBColider other)   
+            * Description: Returns false if this collider is checking against itself, It gets the direction of this collider to the AABB collider clamps it then gets the closest point to the circle to find the distance from the circles closes point returns collision if distancefrom the closest point is lest than combined Radius.  
+            * Visiblity: Public  
+        * Name: Draw( )   
+            * Description: Draws the Circle hit boxes if need to  
+            * Visiblity: Public  
+        * Name: SetScale(float value)  
+            * Description: Sets value to be CollisionRadius  
+            * Visiblity: Public  
+    * **File Name:** Collider.cs  
+        * Name: Owner  
+            * Description: Sets there to be a actor that will house a collider  
+            * Visiblity: Public  
+        * Name: ColliderType  
+            * Description: Allowes you to select a collider type  
+            * Visiblity: Public  
+        * Name: Collider(Actor owner, ColliderType colliderType)  
+            * Description: Sets Up what a base coolider needs that being a actor and type  
+            * VIsiblity: Public 
+        * Name: CheckCollision(Actor other)  
+            * Description: Check for collision and for what type and returns that corrected type of collsion  
+            * Visiblity: Public  
+        * Name: CheckCollisionCircle(CircleCollider other)  
+            * Description: Checks for circle collision if none return false  
+            * Visiblity: Public  
+        * Name: CheckCollisionAABB(AABBCollider other)  
+            * Description: Checks for AABB collision if none return false  
+            * Visiblity: Public  
+        * Name: Draw( ) 
+            * Description: Draws colliders 
+            * Visiblity: Public  
+        * Name: SetScale(float value)  
+            * Description: Sets a template for set scale  
+            * Visiblity: Public  
+    * **File Name:** Actor.cs  
+        * Name: Started  
+            * Description: Returns start  
+            * Visiblity: Public            
+        * Name: Vector2 LocalPosition  
+            * Description: Takes in a new vector 2 and sets its translation  
+            * Visiblity: Public  
+            * Arguments: Vector2(translation)              
+        * Name: Vector2 WorldPosition  
+            * Description: Returns Vector2 global transforms and converts world corridents into local cooridents.  
+            * Visiblity: Public  
+            * Arguments: Vector2(globaltransforms)  
+        * Name: Matrix3 GlobalTransform  
+            * Description: Sets global tranform to equal value and returns _globalTransform 
+            * Visiblity: Public  
+        * Name: Matrix3 LocalTransform  
+            * Description: Sets local transform to equal value and returns _localTransform  
+            * Visiblity: Public  
+        * Name: Actor Parent  
+            * Description: Sets parent to equal value and returns _parent 
+            * Visiblity: Public  
+        * Name: Actor[] Children  
+            * Description: Returns _children 
+            * Visiblity: Public  
+        * Name: Vector2 Size  
+            * Description: Takes in two new vectors times ther magnitude to create a x and y scale thens sets Scale to be those values   
+            * Visiblity: Public  
+            * Arguments: Vector2(scale)  
+        * Name: Vector2 Forward  
+            * Description: Normales a value and addes LocalPosition to get a point to look at the return that new vector  
+            * Visiblity: Public  
+            * Arguments: Vector2(Rotation), LocalPosition  
+        * Name: Sprite  
+            * Description: Gives sprite a value and returns _sprite  
+            * Visiablity: Public  
+        * Name: Collider  
+            * Description: Gives collider a value and returns _collider  
+            * Visiablity: Public  
+        * Name: Actor(floatx, float y, string name = "Actor", string path = "") : this (new Vector2 {X = x, Y = y}, name, path)   
+            * Description: Is what a verision of Actor is and what it takes in.  
+            * Visiablity: Public  
+        * Name: Actor(Vector2 position, string name = "Actor", string path = "")  
+            * Description: Declares what a actor is and what values it takes in and sets sprites image to be on actor. 
+            * Visiblity: Public    
+        * Name: UpdateTransforms( )  
+            * Description: Updates localtransform by rotation, translation and scale, also check is parent is not null if so GlobalTransform is Parents globaltransform * localTransform  
+            * Visiblity: Public  
+            * Arguments: Localtransform, Parent GlobalTransform   
+        * Name: AddChild(Actor child)  
+            * Description: Takes a child actor and sets it to be childed to a parent  
+            * Visiablity: Public   
+            * Arguments: Child and Parent  
+        * Name: RemoveChild(Actor child )  
+            * Description: Removes child from Parent and scene  
+            * Visiablity: Public  
+            * Arguments: child  
+        * Name: Start( )  
+            * Description: Sets Start to be true  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)  
+            * Description: Updates The actors positions 
+            * Visabity: Public  
+        * Name: Draw( )  
+            * Description: Draws the sprites onto the actors if not null  
+            * Visablity: Public  
+            * Arguments: GlobalTransform and sprite  
+        * Name: End( ) 
+            * Description: 
+            * Visablity: Public  
+        * Name: OnCollision(Actor actor)  
+            * Description:  
+            * Visablity: Public  
+        * Name: CheckForCollision(other)  
+            * Description: Checks if there is collision between two colliders if not return false if so return Collision  
+            * Visablity: Public  
+            * Arguments: Collider  
+        * Name: SetTranslation(float translationX, float translationY)  
+            * Description: Sets the translation to be the new Matrix3 createdtranslation  
+            * Visablity: Public  
+            * Arguments: translationX, translationY and Matrix3  
+        * Name: Translate(float translationX, float translationY)  
+            * Description: Sets translation to be translation * new created translation  
+            * Visablity: Public  
+            * Arguments: translationX, translationY, and Matrix3  
+        * Name: SetRotation(float radians)  
+            * Description: Sets Rotation by using createrotation which takes in radians  
+            * Visablity: Public  
+            * Arguments: radians and matrix3  
+        * Name: Rotate(float radians)  
+            * Description: Sets rotation to be rotation * creatrotation radians  
+            * Visablity: Public  
+            * Arguments: Radians, Matrix3  
+        * Name: SetScale(float x, float y)  
+            * Description: Sets scale by takeing in two floats and creating a scale  
+            * Visablity: Public  
+            * Arguments: x, y and Matrix3  
+        * Name: Scale( floatx, float y)  
+            * Decription: Sets the scale to be the new created scale  
+            * Visablity: Public  
+            * Arguments: x, y, Matrix3  
+        * Name: LookAt(Vector2 position)  
+            * Description: Finds the direction the actors should be looking and roates the actors so it looks at that given position  
+            * Visablity: Public  
+            * Arguments: Vector2 position, LocalPosition and Forward   
+    * **File Name**  
+        * Name:
+        
+            
+            
+
+
+
+
+
+
