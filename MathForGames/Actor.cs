@@ -29,7 +29,7 @@ namespace MathForGames
         {
             get { return _started; }
         }
-        
+                
         public Vector2 LocalPosition
         {
             get { return new Vector2(_translation.M02, _translation.M12); }

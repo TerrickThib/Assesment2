@@ -410,6 +410,21 @@ All Objects are in there own class which could inherete from onother class. Ther
         * Name: InitaliseActors() 
             * Decription: Adds and creats all my actors for the game   
             * Visability: Private
+    * **File Name** SmashBros.cs 
+        * Name: SmashBros(float x, float y, Player player, string name = "Actor", string path = "")
+            * Description: sets up what variables SmashBros will have  
+            * Visablity: Public  
+        * Name: Update(float deltaTime)
+            * Description: Updates the move ment and rotation of smashbros and any other properties  
+            * Visablity: Public 
+        * Name: Draw()
+            * Description: Calls base draw and draws the collider  
+            * Visablity: Public  
+        * Name: OnCollision()
+            * Description: Is called if collision happens  
+            * Visablity: Public  
+
+
 
 
 
